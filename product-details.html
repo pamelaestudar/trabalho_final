@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Detalhes do Produto</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://t2.tudocdn.net/531401?w=824&h=494" class="logo-amazon" alt="logo amazon">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+        <form class="search-form" action="#" method="GET">
+            <input type="text" name="search" placeholder="Pesquisar Amazon.com.br">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <div class="cart-icon">
+            <a href="cart.html" class="cart-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Shopping_cart_icon.svg/800px-Shopping_cart_icon.svg.png" alt="Carrinho de Compras" class="cart-image">
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="product-details">
+            <img src="" alt="Imagem do Produto" class="product-image">
+            <h2 class="product-title"></h2>
+            <p class="product-description"></p>
+            <span class="product-price"></span>
+            <button class="add-to-cart">Adicionar ao carrinho</button>
+        </div>
+    </main>
+
+    <script>
+        // Função para obter parâmetros da URL
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Carregar os detalhes do produto na página
+        document.addEventListener("DOMContentLoaded", () => {
+            const title = getParameterByName('title');
+            const image = getParameterByName('image');
+            const description = getParameterByName('description');
+            const price = getParameterByName('price');
+
+            document.querySelector(".product-image").src = image;
+            document.querySelector(".product-title").textContent = title;
+            document.querySelector(".product-description").textContent = description;
+            document.querySelector(".product-price").textContent = `R$ ${price}`;
+        });
+
+        // Inicialização do PouchDB
+        const db = new PouchDB('cart');
+
+        // Adicionar produto ao carrinho
+        document.querySelector(".add-to-cart").addEventListener("click", () => {
+            const product = {
+                _id: new Date().toISOString(),
+                image: document.querySelector(".product-image").src,
+                title: document.querySelector(".product-title").textContent,
+                description: document.querySelector(".product-description").textContent,
+                price: document.querySelector(".product-price").textContent.replace('R$', '').replace(',', '.'),
+                quantity: 1
+            };
+            addToCart(product);
+        });
+
+        function addToCart(product) {
+            db.get(product._id).then(doc => {
+                doc.quantity += 1;
+                return db.put(doc);
+            }).catch(err => {
+                if (err.status === 404) {
+                    db.put(product).then(() => {
+                        alert(`${product.title} foi adicionado ao carrinho!`);
+                    });
+                } else {
+                    console.error('Erro ao adicionar ao carrinho:', err);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

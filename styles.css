@@ -1,0 +1,280 @@
+/* Estilo do cabeçalho */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgb(36, 33, 31);
+    border-radius: 10px;
+}
+
+nav {
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    flex: 1;
+}
+
+.logo-amazon {
+    max-width: 150px;
+    height: auto;
+    border-radius: 10%;
+}
+
+.search-form {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 800px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #f0c14b;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-icon {
+    margin-right: 20px;
+}
+
+.cart-link {
+    display: block;
+    position: relative;
+    padding: 10px;
+}
+
+.cart-image {
+    width: 30px;
+    height: auto;
+}
+
+/* Estilo da grade de produtos */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: auto;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-item h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.product-item p {
+    font-size: 1em;
+    color: #666;
+    margin: 10px 0;
+}
+
+.product-item .price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #f00;
+}
+
+.product-item button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #f0c14b;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+}
+
+.product-item button:hover {
+    background-color: #e7b22a;
+}
+
+/* Estilo do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+}
+
+.modal-title, .modal-description, .modal-price {
+    margin: 10px 0;
+}
+
+.add-to-cart-modal {
+    background-color: #f0c14b;
+    border: 1px solid #a88734;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Estilo da página do carrinho */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.cart-item div {
+    flex: 1;
+}
+
+.cart-item h2 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.cart-item p {
+    margin: 5px 0;
+}
+
+.cart-item .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #f00;
+}
+
+.cart-item .quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.cart-item .quantity-control button {
+    padding: 5px 10px;
+    background-color: #f0c14b;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-item .quantity-control button:hover {
+    background-color: #e7b22a;
+}
+
+.cart-item .quantity-control span {
+    margin: 0 10px;
+    font-size: 1.2em;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.cart-summary p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.cart-summary button {
+    padding: 10px 20px;
+    background-color: #f0c14b;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-summary button:hover {
+    background-color: #e7b22a;
+}
